@@ -3,419 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <title>Mahadeva Prasad S — Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --ink:    #0d0d0d;
-      --paper:  #f7f5f0;
-      --mid:    #6b6b6b;
-      --accent: #ff4d00;
-      --card:   #ffffff;
-      --border: #e0ddd8;
-    }
-
+    :root { --ink:#0d0d0d; --paper:#f7f5f0; --mid:#6b6b6b; --accent:#ff4d00; --card:#ffffff; --border:#e0ddd8; }
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      min-height: 100vh;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.1rem 5%;
-      background: rgba(247,245,240,0.88);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-    }
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--mid);
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--ink); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 7rem 5% 4rem;
-      text-align: center;
-    }
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.4rem;
-    }
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 9vw, 7rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.4rem;
-    }
-    .hero h1 .outline {
-      -webkit-text-stroke: 2px var(--ink);
-      color: transparent;
-    }
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--mid);
-      max-width: 520px;
-      margin: 0 auto 2.8rem;
-      line-height: 1.7;
-    }
-
-    /* ── CTA LINKS (the hero buttons) ── */
-    .cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 0.85rem 1.8rem;
-      border-radius: 6px;
-      transition: transform .18s, box-shadow .18s;
-    }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
-
-    .btn-linkedin { background: #0a66c2; color: #fff; }
-    .btn-github   { background: #24292f; color: #fff; }
-    .btn-resume   { background: var(--accent); color: #fff; }
-
-    .cta-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-    /* ── SECTION WRAPPER ── */
-    section { padding: 5rem 5%; }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-    }
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 2.8rem;
-    }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      max-width: 960px;
-    }
-    .about-text p {
-      color: var(--mid);
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-    .avatar-wrap {
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff4d00 0%, #ff9966 100%);
-      display: grid;
-      place-items: center;
-      font-family: 'Syne', sans-serif;
-      font-size: 5rem;
-      font-weight: 800;
-      color: #fff;
-      justify-self: center;
-    }
-
-    /* ── SKILLS ── */
-    .skills-section { background: var(--ink); color: var(--paper); }
-    .skills-section .section-title { color: var(--paper); }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
-      max-width: 960px;
-    }
-    .skill-chip {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 8px;
-      padding: 0.9rem 1rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    .skill-chip span { color: var(--accent); font-size: 0.75rem; display: block; margin-top: 0.25rem; }
-
-    /* ── PROJECTS ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.4rem;
-      max-width: 960px;
-    }
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.8rem;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.08); }
-    .project-tag {
-      display: inline-block;
-      background: #fff3ee;
-      color: var(--accent);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      margin-bottom: 0.9rem;
-    }
-    .project-card h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; margin-bottom: 0.5rem; }
-    .project-card p  { color: var(--mid); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.2rem; }
-    .project-link {
-      display: inline-flex; align-items: center; gap: 0.3rem;
-      font-size: 0.85rem; font-weight: 600; color: var(--ink); text-decoration: none;
-      border-bottom: 1.5px solid var(--ink); padding-bottom: 1px;
-      transition: color .2s, border-color .2s;
-    }
-    .project-link:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* ── CONNECT ── */
-    .connect-section { text-align: center; border-top: 1px solid var(--border); }
-    .connect-cards {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem;
-      max-width: 700px; margin: 0 auto;
-    }
-    .connect-card {
-      flex: 1 1 180px;
-      display: flex; flex-direction: column; align-items: center; gap: 0.7rem;
-      text-decoration: none;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem 1.4rem;
-      color: var(--ink);
-      transition: transform .2s, box-shadow .2s, border-color .2s;
-    }
-    .connect-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.09); border-color: var(--accent); }
-    .connect-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      display: grid; place-items: center; color: #fff;
-    }
-    .ic-linkedin { background: #0a66c2; }
-    .ic-github   { background: #24292f; }
-    .ic-resume   { background: var(--accent); }
-    .connect-card strong { font-weight: 600; font-size: 0.95rem; }
-    .connect-card small  { color: var(--mid); font-size: 0.78rem; }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 2rem 5%;
-      border-top: 1px solid var(--border);
-      color: var(--mid);
-      font-size: 0.82rem;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .avatar-wrap { width: 180px; height: 180px; font-size: 3.5rem; order: -1; }
-      .nav-links { display: none; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .cta-btn, .project-card, .connect-card { transition: none; }
-    }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; }
+    nav { position: fixed; top:0; left:0; right:0; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 5%; background:rgba(247,245,240,0.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); z-index:100; }
+    .nav-logo { font-family:'Syne',sans-serif; font-size:1.25rem; letter-spacing:-0.03em; }
+    .nav-logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:2rem; }
+    .nav-links a { text-decoration:none; color:var(--mid); font-size:0.875rem; font-weight:500; transition:color .2s; }
+    .nav-links a:hover { color:var(--ink); }
+    .hero { min-height:100vh; display:grid; place-items:center; padding:7rem 5% 4rem; text-align:center; }
+    .hero-eyebrow { display:inline-block; font-size:0.78rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:1.4rem; }
+    .hero h1 { font-family:'Syne',sans-serif; font-size:clamp(2.8rem,8vw,6rem); font-weight:800; line-height:1; letter-spacing:-0.04em; margin-bottom:1rem; }
+    .hero h1 .outline { -webkit-text-stroke:2px var(--ink); color:transparent; }
+    .hero-role { font-size:1rem; font-weight:600; color:var(--accent); letter-spacing:0.05em; margin-bottom:1rem; }
+    .hero-sub { font-size:clamp(0.95rem,2vw,1.1rem); color:var(--mid); max-width:540px; margin:0 auto 2.8rem; line-height:1.7; }
+    .cta-group { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+    .cta-btn { display:inline-flex; align-items:center; gap:0.6rem; text-decoration:none; font-weight:600; font-size:0.9rem; padding:0.85rem 1.8rem; border-radius:6px; transition:transform .18s,box-shadow .18s; }
+    .cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.12); }
+    .btn-linkedin { background:#0a66c2; color:#fff; }
+    .btn-github   { background:#24292f; color:#fff; }
+    .btn-email    { background:var(--accent); color:#fff; }
+    .cta-btn svg  { width:18px; height:18px; flex-shrink:0; }
+    section { padding:5rem 5%; }
+    .section-label { font-size:0.75rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.6rem; }
+    .section-title { font-family:'Syne',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-0.03em; margin-bottom:2.8rem; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:960px; }
+    .about-text p { color:var(--mid); line-height:1.8; margin-bottom:1rem; }
+    .about-contact { display:flex; flex-direction:column; gap:0.5rem; margin-top:1.5rem; }
+    .about-contact a, .about-contact span { color:var(--ink); text-decoration:none; font-size:0.9rem; font-weight:500; }
+    .about-contact a:hover { color:var(--accent); }
+    .avatar-wrap { width:220px; height:220px; border-radius:50%; background:linear-gradient(135deg,#ff4d00 0%,#ff9966 100%); display:grid; place-items:center; font-family:'Syne',sans-serif; font-size:4rem; font-weight:800; color:#fff; justify-self:center; }
+    .skills-section { background:var(--ink); color:var(--paper); }
+    .skills-section .section-title { color:var(--paper); }
+    .skills-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(155px,1fr)); gap:1rem; max-width:960px; }
+    .skill-chip { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:8px; padding:0.9rem 1rem; font-size:0.9rem; font-weight:500; }
+    .skill-chip span { color:var(--accent); font-size:0.75rem; display:block; margin-top:0.25rem; }
+    .edu-list { display:flex; flex-direction:column; gap:1.2rem; max-width:760px; }
+    .edu-item { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.4rem 1.8rem; }
+    .edu-item h3 { font-family:'Syne',sans-serif; font-size:1rem; margin-bottom:0.3rem; }
+    .edu-item p  { color:var(--mid); font-size:0.88rem; }
+    .edu-year { float:right; font-size:0.8rem; font-weight:600; color:var(--accent); }
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.4rem; max-width:960px; }
+    .project-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.8rem; transition:transform .2s,box-shadow .2s; }
+    .project-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.08); }
+    .project-tag { display:inline-block; background:#fff3ee; color:var(--accent); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:0.25rem 0.6rem; border-radius:4px; margin-bottom:0.9rem; }
+    .project-card h3 { font-family:'Syne',sans-serif; font-size:1.1rem; margin-bottom:0.5rem; }
+    .project-card p  { color:var(--mid); font-size:0.88rem; line-height:1.7; }
+    .connect-section { text-align:center; border-top:1px solid var(--border); }
+    .connect-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:1.2rem; max-width:700px; margin:0 auto; }
+    .connect-card { flex:1 1 170px; display:flex; flex-direction:column; align-items:center; gap:0.7rem; text-decoration:none; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2rem 1.4rem; color:var(--ink); transition:transform .2s,box-shadow .2s,border-color .2s; }
+    .connect-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.09); border-color:var(--accent); }
+    .connect-icon { width:48px; height:48px; border-radius:12px; display:grid; place-items:center; }
+    .ic-linkedin { background:#0a66c2; }
+    .ic-github   { background:#24292f; }
+    .ic-email    { background:#ea4335; }
+    .connect-card strong { font-weight:600; font-size:0.95rem; }
+    .connect-card small  { color:var(--mid); font-size:0.75rem; text-align:center; }
+    footer { text-align:center; padding:2rem 5%; border-top:1px solid var(--border); color:var(--mid); font-size:0.82rem; }
+    @media(max-width:640px){.about-grid{grid-template-columns:1fr;}.avatar-wrap{width:160px;height:160px;font-size:3rem;order:-1;}.nav-links{display:none;}.edu-year{float:none;display:block;margin-bottom:0.3rem;}}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">MP<span></span></div>
+  <div class="nav-logo">Mahadeva<span>.</span></div>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
     <a href="#projects">Projects</a>
     <a href="#connect">Connect</a>
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div>
-    <div class="hero-eyebrow">Available for opportunities</div>
-    <h1>
-      Hi, I'm<br>
-      <span class="outline">Mahadeva Prasad S</span>
-    </h1>
-    <p class="hero-sub">
-      A passionate developer who builds clean, purposeful digital experiences.
-      Let's connect and create something great together.
-    </p>
-
+    <div class="hero-eyebrow">MCA Student · Open to Opportunities</div>
+    <h1>Mahadeva<br><span class="outline">Prasad S</span></h1>
+    <div class="hero-role">Java Full Stack Developer &amp; UI/UX Enthusiast</div>
+    <p class="hero-sub">Motivated developer with hands-on experience in Java Full Stack and UI/UX Development. Building efficient, user-centric software from Kollegal, Karnataka.</p>
     <div class="cta-group">
-      <!-- 🔗 REPLACE href="#" with your real URLs -->
       <a class="cta-btn btn-linkedin" href="https://www.linkedin.com/in/mahadevaprasad-s" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
         LinkedIn
       </a>
-      <a class="cta-btn btn-github" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">
+      <a class="cta-btn btn-github" href="https://github.com/mpeducation1527-arch" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.18c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.49v-1.72c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1.01.07 1.54 1.06 1.54 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 7.64c.85 0 1.7.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.59.69.49A10.19 10.19 0 0 0 22 12.18C22 6.58 17.52 2 12 2z"/></svg>
         GitHub
       </a>
-      <a class="cta-btn btn-resume" href="YOUR-RESUME-LINK.pdf" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        View Resume
+      <a class="cta-btn btn-email" href="mailto:mahadevaprasads84@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact Me
       </a>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-label">About me</div>
   <div class="section-title">Who I am</div>
   <div class="about-grid">
     <div class="about-text">
-      <p>
-        I'm a developer with a love for turning complex problems into simple,
-        elegant solutions. I enjoy working across the full stack — from
-        pixel-perfect interfaces to reliable back-end systems.
-      </p>
-      <p>
-        When I'm not coding, you'll find me exploring open-source projects,
-        learning new tools, and collaborating with like-minded people.
-        I'm always open to interesting projects and conversations.
-      </p>
+      <p>I'm a motivated MCA student at Mangalore Institute of Technology and Engineering with a strong foundation in Java, Python, and Full Stack Development.</p>
+      <p>I have hands-on internship experience in Java Full Stack development and UI/UX Design, with a keen interest in building efficient, user-centric software solutions.</p>
+      <p>I'm currently seeking opportunities to apply my technical skills in a professional software development environment.</p>
+      <div class="about-contact">
+        <a href="tel:8105147277">📞 8105147277</a>
+        <a href="mailto:mahadevaprasads84@gmail.com">📧 mahadevaprasads84@gmail.com</a>
+        <span>📍 Kollegal, Karnataka</span>
+      </div>
     </div>
-    <!-- Replace "YN" with your initials or swap for an <img> tag -->
     <div class="avatar-wrap">MP</div>
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills" class="skills-section">
   <div class="section-label">What I know</div>
-  <div class="section-title">Skills & Tools</div>
+  <div class="section-title">Skills &amp; Tools</div>
   <div class="skills-grid">
-    <!-- Edit or add chips to match your real skill set -->
-    <div class="skill-chip">HTML / CSS<span>Frontend</span></div>
-    <div class="skill-chip">JavaScript<span>Frontend</span></div>
-    <div class="skill-chip">React<span>Framework</span></div>
-    <div class="skill-chip">Node.js<span>Backend</span></div>
-    <div class="skill-chip">Python<span>Backend</span></div>
-    <div class="skill-chip">Git & GitHub<span>Version Control</span></div>
-    <div class="skill-chip">SQL<span>Databases</span></div>
-    <div class="skill-chip">Figma<span>Design</span></div>
+    <div class="skill-chip">Java<span>Language</span></div>
+    <div class="skill-chip">Python<span>Language</span></div>
+    <div class="skill-chip">JavaScript<span>Language</span></div>
+    <div class="skill-chip">HTML / CSS<span>Web</span></div>
+    <div class="skill-chip">Full Stack Dev<span>Web</span></div>
+    <div class="skill-chip">MySQL<span>Database</span></div>
+    <div class="skill-chip">UI/UX Design<span>Design</span></div>
+    <div class="skill-chip">Machine Learning<span>AI / ML</span></div>
+    <div class="skill-chip">REST APIs<span>Backend</span></div>
+    <div class="skill-chip">Git &amp; GitHub<span>Version Control</span></div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<section id="education">
+  <div class="section-label">Academic background</div>
+  <div class="section-title">Education</div>
+  <div class="edu-list">
+    <div class="edu-item">
+      <span class="edu-year">2025 – 2027</span>
+      <h3>Master of Computer Applications (MCA)</h3>
+      <p>Mangalore Institute of Technology and Engineering &nbsp;·&nbsp; CGPA: 6.86</p>
+    </div>
+    <div class="edu-item">
+      <span class="edu-year">2022 – 2025</span>
+      <h3>Bachelor of Computer Applications (BCA)</h3>
+      <p>Hindustan College, Mysore &nbsp;·&nbsp; 78%</p>
+    </div>
+    <div class="edu-item">
+      <span class="edu-year">2020 – 2022</span>
+      <h3>Pre-University Course (PUC)</h3>
+      <p>Sree Vasavi Composite PU College, Kollegal &nbsp;·&nbsp; 54%</p>
+    </div>
+    <div class="edu-item">
+      <span class="edu-year">2020</span>
+      <h3>SSLC</h3>
+      <p>Sri Shiva Vidya Kendra (R), Kollegal &nbsp;·&nbsp; 72%</p>
+    </div>
+  </div>
+</section>
+
 <section id="projects">
   <div class="section-label">My work</div>
-  <div class="section-title">Projects</div>
+  <div class="section-title">Projects &amp; Experience</div>
   <div class="projects-grid">
-    <!-- Edit these cards or add more -->
     <div class="project-card">
-      <div class="project-tag">Web App</div>
-      <h3>Project One</h3>
-      <p>A brief description of what this project does, the problem it solves, and the tech stack you used.</p>
-      <a class="project-link" href="https://github.com/YOUR-USERNAME/project-one" target="_blank" rel="noopener">
-        View on GitHub →
-      </a>
+      <div class="project-tag">Machine Learning</div>
+      <h3>Recycling Material Detection</h3>
+      <p>Developed an ML-based material classification system that automated waste segregation in recycling facilities, improving detection accuracy and operational efficiency using Python and Computer Vision.</p>
     </div>
     <div class="project-card">
-      <div class="project-tag">API</div>
-      <h3>Project Two</h3>
-      <p>Describe the project here. Mention key features, your role, and any noteworthy outcomes or metrics.</p>
-      <a class="project-link" href="https://github.com/YOUR-USERNAME/project-two" target="_blank" rel="noopener">
-        View on GitHub →
-      </a>
+      <div class="project-tag">Java Full Stack · Internship</div>
+      <h3>Secure Text Transferring in Cloud</h3>
+      <p>Built and tested web application modules with Java frameworks, REST APIs, and database integration. Gained hands-on full stack development experience during internship (2024).</p>
     </div>
     <div class="project-card">
-      <div class="project-tag">Tool</div>
-      <h3>Project Three</h3>
-      <p>Give visitors a quick sense of what this project achieves and why you built it.</p>
-      <a class="project-link" href="https://github.com/YOUR-USERNAME/project-three" target="_blank" rel="noopener">
-        View on GitHub →
-      </a>
+      <div class="project-tag">UI/UX · Internship</div>
+      <h3>UI/UX Design Projects</h3>
+      <p>Designed user-friendly interfaces using modern UX principles. Delivered responsive wireframes and prototypes that improved overall user experience for real-world applications (2024).</p>
     </div>
   </div>
 </section>
 
-<!-- CONNECT -->
 <section id="connect" class="connect-section">
   <div class="section-label">Get in touch</div>
   <div class="section-title">Let's Connect</div>
-
   <div class="connect-cards">
-    <a class="connect-card" href="https://linkedin.com/in/YOUR-PROFILE" target="_blank" rel="noopener">
+    <a class="connect-card" href="https://www.linkedin.com/in/mahadevaprasad-s" target="_blank" rel="noopener">
       <div class="connect-icon ic-linkedin">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
       </div>
       <strong>LinkedIn</strong>
-      <small>View my profile</small>
+      <small>mahadevaprasad-s</small>
     </a>
-
-    <a class="connect-card" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">
+    <a class="connect-card" href="https://github.com/mpeducation1527-arch" target="_blank" rel="noopener">
       <div class="connect-icon ic-github">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.58 2 12.18c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.49v-1.72c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1.01.07 1.54 1.06 1.54 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 7.64c.85 0 1.7.12 2.5.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.59.69.49A10.19 10.19 0 0 0 22 12.18C22 6.58 17.52 2 12 2z"/></svg>
       </div>
       <strong>GitHub</strong>
-      <small>See my code</small>
+      <small>mpeducation1527-arch</small>
     </a>
-
-    <a class="connect-card" href="YOUR-RESUME-LINK.pdf" target="_blank" rel="noopener">
-      <div class="connect-icon ic-resume">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    <a class="connect-card" href="mailto:mahadevaprasads84@gmail.com">
+      <div class="connect-icon ic-email">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </div>
-      <strong>Resume</strong>
-      <small>Download / View</small>
+      <strong>Email</strong>
+      <small>mahadevaprasads84@gmail.com</small>
     </a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2026 Your Name · Built with purpose</p>
+  <p>2026 Mahadeva Prasad S · Java Full Stack Developer · Kollegal, Karnataka</p>
 </footer>
 
 </body>
